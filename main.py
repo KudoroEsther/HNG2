@@ -10,7 +10,6 @@ import asyncio
 from database import database, engine, metadata
 from models import profiles
 from schemas import ProfileRequest
-# from uuid_extensions import uuid7str
 import uuid
 
 
@@ -130,7 +129,7 @@ async def create_profile(payload: ProfileRequest):
     age         = agify["age"]
 
     data = {
-        "id":                 str(uuid.uuid7()),
+        "id":                 str(uuid.uuid4()),
         "name":               name,
         "gender":             genderize["gender"],
         "gender_probability": genderize["probability"],
