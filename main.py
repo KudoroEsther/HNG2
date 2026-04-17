@@ -130,7 +130,7 @@ async def create_profile(payload: ProfileRequest):
     age         = agify["age"]
 
     data = {
-        "id":                 uuid7str(),
+        "id":                 str(uuid.uuid7()),
         "name":               name,
         "gender":             genderize["gender"],
         "gender_probability": genderize["probability"],
