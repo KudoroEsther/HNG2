@@ -10,7 +10,8 @@ import asyncio
 from database import database, engine, metadata
 from models import profiles
 from schemas import ProfileRequest
-from uuid_extensions import uuid7str
+# from uuid_extensions import uuid7str
+import uuid_utils as uuid
 
 
 # ── App lifecycle ──────────────────────────────────────────────────────────────
