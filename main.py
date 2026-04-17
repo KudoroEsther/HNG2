@@ -13,7 +13,6 @@ from schemas import ProfileRequest
 import uuid
 
 
-# ── App lifecycle ──────────────────────────────────────────────────────────────
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -34,7 +33,6 @@ app.add_middleware(
 )
 
 
-# ── Validation error handler (422) ────────────────────────────────────────────
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):
@@ -52,8 +50,7 @@ async def validation_exception_handler(request, exc):
     )
 
 
-# ── Helpers ───────────────────────────────────────────────────────────────────
-
+# Conditionals
 def get_age_group(age: int) -> str:
     if age <= 12:
         return "child"
@@ -76,8 +73,7 @@ def profile_dict(row) -> dict:
     return dict(row)
 
 
-# ── Routes ────────────────────────────────────────────────────────────────────
-
+# ENDPOINTS
 @app.post("/api/profiles")
 async def create_profile(payload: ProfileRequest):
     name = payload.name  # already stripped + lowercased by validator
@@ -94,7 +90,7 @@ async def create_profile(payload: ProfileRequest):
             },
         )
 
-    # Call all 3 external APIs concurrently
+    # Calling all 3 external APIs concurrently
     async with httpx.AsyncClient(timeout=10) as client:
         try:
             genderize_res, agify_res, nationalize_res = await asyncio.gather(

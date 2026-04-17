@@ -18,5 +18,4 @@ COPY . .
 # Expose port
 EXPOSE 8000
 
-# Start server using the platform-provided PORT when available
 CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]

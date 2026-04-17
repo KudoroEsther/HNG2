@@ -10,7 +10,7 @@ DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable not set")
 
-# databases library needs asyncpg driver; sqlalchemy engine needs psycopg2
+# databases library needs asyncpg driver whereas sqlalchemy engine needs psycopg2
 ASYNC_DATABASE_URL = DATABASE_URL.replace("postgresql://", "postgresql+asyncpg://") \
                                  .replace("postgresql+psycopg2://", "postgresql+asyncpg://")
 
